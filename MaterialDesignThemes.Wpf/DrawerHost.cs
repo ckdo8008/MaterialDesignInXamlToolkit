@@ -51,11 +51,11 @@ namespace MaterialDesignThemes.Wpf
         public static RoutedCommand OpenDrawerCommand = new RoutedCommand();
         public static RoutedCommand CloseDrawerCommand = new RoutedCommand();
 
-        private FrameworkElement _templateContentCoverElement;
-        private FrameworkElement _leftDrawerElement;
-        private FrameworkElement _topDrawerElement;
-        private FrameworkElement _rightDrawerElement;
-        private FrameworkElement _bottomDrawerElement;
+        private FrameworkElement? _templateContentCoverElement;
+        private FrameworkElement? _leftDrawerElement;
+        private FrameworkElement? _topDrawerElement;
+        private FrameworkElement? _rightDrawerElement;
+        private FrameworkElement? _bottomDrawerElement;
 
         private bool _lockZIndexes;
 
@@ -428,9 +428,9 @@ namespace MaterialDesignThemes.Wpf
             UpdateVisualStates(false);
         }
 
-        private FrameworkElement WireDrawer(FrameworkElement drawerElement, bool unwire)
+        private FrameworkElement? WireDrawer(FrameworkElement? drawerElement, bool unwire)
         {
-            if (drawerElement == null) return null;
+            if (drawerElement is null) return null;
 
             if (unwire)
             {
@@ -446,15 +446,9 @@ namespace MaterialDesignThemes.Wpf
             return drawerElement;
         }
 
-        private void DrawerElement_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            ReactToFocus(sender);
-        }
+        private void DrawerElement_MouseDown(object sender, MouseButtonEventArgs e) => ReactToFocus(sender);
 
-        private void DrawerElement_GotFocus(object sender, RoutedEventArgs e)
-        {
-            ReactToFocus(sender);
-        }
+        private void DrawerElement_GotFocus(object sender, RoutedEventArgs e) => ReactToFocus(sender);
 
         private void ReactToFocus(object sender)
         {
